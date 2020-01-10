@@ -1,0 +1,18 @@
+parents:
+  - simpleName: ""
+    communicationType: "" 
+    properName: ""
+childs:
+  #note on restType:
+  #GET has a code of 1
+  #POST has 2
+  #PATCH has 4
+  #DELETE has 8
+  #if an endpoint supports both GET and PATCH, but not the rest, its code is 5, 
+  #if it supports only GET and POST its code is 3
+  #if it only supports POST then its code will be 2
+  - simpleName: ""
+    parent: ""
+    communicationType: ""
+    restType: 2
+    properName: ""

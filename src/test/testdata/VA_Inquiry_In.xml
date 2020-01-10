@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap-env:Body>
+		<tns:anlegenVAO xmlns:naw="http://naw.telekom.de" xmlns:tns="http://naw.telekom.de/WhPo" >
+			<tns:Vorabstimmung>
+				<tns:VorabstimmungsID>DEU.CAR123.V000310</tns:VorabstimmungsID>
+				<tns:Geschaeftsfall>VA-KUE-MRN</tns:Geschaeftsfall>
+				<tns:Kundenwunschtermin>2013-02-15</tns:Kundenwunschtermin>
+			</tns:Vorabstimmung>
+			<tns:EKP>
+				<naw:EKPab>
+					<naw:EKPname>D</naw:EKPname>
+					<naw:internerCarrierCode>03</naw:internerCarrierCode>
+				</naw:EKPab>
+				<naw:EKPauf>
+					<naw:EKPname>H</naw:EKPname>
+					<naw:internerCarrierCode>0041</naw:internerCarrierCode>
+				</naw:EKPauf>
+			</tns:EKP>
+			<tns:Endkunde>
+				<naw:person>
+					<naw:anrede>1</naw:anrede>
+					<naw:vorname>B</naw:vorname>
+					<naw:nachname>B</naw:nachname>
+				</naw:person>
+			</tns:Endkunde>
+		</tns:anlegenVAO>
+	</soap-env:Body>
+</soap-env:Envelope>
