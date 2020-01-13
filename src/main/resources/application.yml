@@ -1,0 +1,25 @@
+connection:
+  jira:
+    cloud: 
+      user:
+      pass: 
+      url:
+    server:
+      user:
+      pass: 
+      url: 
+  xray:
+    cloud:
+      user: 
+      pass: 
+      url: 
+github: 
+  url: 
+  oauth: 
+queue:
+  host:
+  port:
+  channel:
+  qmgr: 
+  app_user: 
+  app_password:
