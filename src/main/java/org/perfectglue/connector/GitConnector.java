@@ -17,13 +17,13 @@ public class GitConnector {
 	
 	public GitConnector() {
 		try {
-			github = GitHub.connectUsingOAuth("9b8d919e191637bad682f98b1f448d667d38d999");
+			github = GitHub.connectUsingOAuth(""); //todo: implement getting token from application.yml
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			repo = github.getRepository("holos-supply/testdata");
+			repo = github.getRepository(""); //todo: implement getting repo address from application.yml
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
