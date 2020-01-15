@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The <code>JiraWebhookController</code> is a core class used by Spring Boot to parse mappings
+ * 
+ * @author Willm T&uuml;ting
+ *
+ */
 @RestController
 @RequestMapping("/api/webhook")
 public class JiraWebhookController {
