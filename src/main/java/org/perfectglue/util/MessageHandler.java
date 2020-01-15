@@ -1,15 +1,9 @@
 package org.perfectglue.util;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
-import java.util.Map;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -23,25 +17,27 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import org.perfectglue.config.QueueProperties;
-import org.perfectglue.connector.QueueConnector;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.type.TypeReference;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator.Feature;
+
 import com.google.common.io.Files;
+
+
+/**
+ * The <code>MessageHandler</code> is a utility class which allows for interacting with
+ * JSON and XML in a structured way
+ * 
+ * @author Willm T&uuml;ting
+ * 
+ */
 
 public class MessageHandler {
 	
@@ -62,11 +58,6 @@ public class MessageHandler {
 	public String setJsonElement(String jsonMessage, String parent, String element, String value) {
 		
 		try {
-			/*ObjectMapper mapper = new ObjectMapper();
-			JsonNode root = mapper.readTree(jsonMessage);
-			ObjectNode node = (ObjectNode) root;
-			node.with(parent).put(element, value);
-			mapper.writer().writeValue(jsonMessage, node);*/
 			logger.info("Entry: "+jsonMessage);
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode root = mapper.readTree(jsonMessage);
@@ -91,57 +82,7 @@ public class MessageHandler {
 		return doc.getElementsByTagName(element).item(0).getTextContent();
 		
 	}
-	
-	/*private Document convertStringToXMLDocument(String xmlString)
-    {
-        //Parser that produces DOM object trees from XML content
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-         
-        //API to obtain DOM Document instance
-        DocumentBuilder builder = null;
-        try
-        {
-            //Create DocumentBuilder with default configuration
-            builder = factory.newDocumentBuilder();
-             
-            //Parse the content to Document object
-            Document doc = builder.parse(new InputSource(new StringReader(xmlString)));
-            return doc;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
-	
-	public static void main(String args[]) {
-		try {
-		MessageHandler handle = new MessageHandler();
-		//handle.logger.info("XML: "+mock.mockEasyXml().getNodeValue());
-		//handle.validateXml("src/main/java/net/conology/mock/simple.xml");
-		//handle.validateXml(mock.mockEasyXml2());
-		//handle.validateXml(mock.mockSXml());
 		
-		//Document doc = convertStringToDocument(mock.mockXml());
-		//System.out.println(doc.getElementsByTagName("tns:Kundenwunschtermin").item(0).getTextContent());
-		
-		handle.logger.info(handle.setXmlElement("", "naw:vorname", "Test"));
-		
-		//File file = new File("src/main/java/net/conology/mock/simple.xml"); 
-		/*BufferedReader br = new BufferedReader(new FileReader(file));
-		String st; 
-		  while ((st = br.readLine()) != null) {
-		    System.out.println(st); 
-		  } */
-		//String result = handle.getXmlElement(mock.mockEasyXml(), "names");
-		//handle.logger.info("RESULT: "+result);
-		
-		}catch(Exception e) {
-			System.out.println(e.toString());
-		}
-	}
-	
 	public void validateXml(String file) {
 		Schema schema = null;
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -203,14 +144,20 @@ public class MessageHandler {
 		
 		
 	}
-	
-	public String unwrapPreagreementXmlFromJson(String jsonMessage) {
+	/**
+	 * Gets and returns only the XML part from a json Message.
+	 * TODO: complete this
+	 * @param jsonMessage
+	 * @param xmlContainingTag
+	 * @return
+	 */
+	public String unwrapXmlFromJson(String jsonMessage, String xmlContainingTag) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode json;
 		try {
 			json = objectMapper.readValue(jsonMessage, JsonNode.class);
-			return  json.get("preAgreementXml").asText();
+			return  json.get(xmlContainingTag).asText();
 		} catch (Exception e) {
 			return null;
 		}
