@@ -5,15 +5,10 @@ import org.perfectglue.connector.XrayServerConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * The <code>JiraServerController</code> is a core class used by Spring Boot to parse mappings
- * 
- * @author Willm T&uuml;ting
- *
- */
 @RestController
 @RequestMapping("/api/server")
 public class JiraServerController {
