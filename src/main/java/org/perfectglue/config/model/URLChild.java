@@ -9,7 +9,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
+/**
+ * The <code>URLChild</code> is a model settings class required by <code>UrlResolver</code>
+ * 
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
 "simpleName",
