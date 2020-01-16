@@ -7,7 +7,13 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**
+ * The <code>QueueProperties</code> is a model class required by <code>QueueProperties</code>
+ *  
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 public class QueueProp {
 	@JsonProperty("host")
 	private String host;
