@@ -1,6 +1,11 @@
 package org.perfectglue.config.model;
 
-
+/**
+ * The <code>JiraProperties</code> is a model class required by <code>ConnectionProperties</code>
+ *  
+ * @author Willm T&uuml;ting
+ *
+ */
 public class JiraProperties {
 	
 	private CloudProperties cloud;
