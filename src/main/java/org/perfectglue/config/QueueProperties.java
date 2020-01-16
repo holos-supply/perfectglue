@@ -12,7 +12,16 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**
+ * The <code>QueueProperties</code> is a configuration settings class automatically
+ * initialised and used by Spring Boot. It gets data from application.yml file in 
+ * <code>main/resources</code>
+ * <p/>
+ * 
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 @Component
 @ConfigurationProperties("queue")
 @JsonIgnoreProperties(ignoreUnknown = true)
