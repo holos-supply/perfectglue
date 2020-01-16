@@ -16,7 +16,13 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.codec.binary.Base64;
 
 import io.restassured.response.Response;
-
+/**
+ * The <code>XrayServerConnector</code> is a core class used by Spring Boot to connect to 
+ * Xray for a server instance of Jira
+ * 
+ * @author Willm T&uuml;ting
+ *
+ */
 public class XrayServerConnector implements IXrayConnector {
 
 	private String auth;

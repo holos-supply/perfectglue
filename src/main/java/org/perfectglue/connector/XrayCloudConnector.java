@@ -21,7 +21,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.restassured.response.Response;
-
+/**
+ * The <code>XrayServerConnector</code> is a core class used by Spring Boot to connect to 
+ * Xray for a cloud instance of Jira
+ * 
+ * @author Willm T&uuml;ting
+ *
+ */
 public class XrayCloudConnector implements IXrayConnector {
 
 	private String client_id;

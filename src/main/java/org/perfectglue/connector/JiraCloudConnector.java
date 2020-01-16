@@ -15,7 +15,13 @@ import com.atlassian.jira.rest.client.api.domain.Issue;
 import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientFactory;
 
 import io.restassured.response.Response;
-
+/**
+ * The <code>JiraCloudConnector</code> is a connector class used to 
+ * get a valid JiraRestClient to communicate with Jira Cloud.
+ * 
+ * @author Willm T&uuml;ting
+ *
+ */
 public class JiraCloudConnector {
 	
 	private String jiraUrl;

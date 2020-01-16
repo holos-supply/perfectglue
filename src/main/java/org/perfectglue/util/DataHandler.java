@@ -9,6 +9,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator.Feature;
 
+/**
+ * The <code>DataHandler</code> is a utility class resolving YAML files into their respective
+ * classes. 
+ * <p/>
+ * All the methods in this class are static.
+ * <p/>
+ * 
+ * @author Rok Pu&#154;nik
+ *
+ */
 public class DataHandler { //potentially to be renamed
 
 	/*

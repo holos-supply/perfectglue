@@ -19,7 +19,18 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
-
+/**
+ * Demo Step Definition class using made up examples to explain how to write proper 
+ * step definitions. 
+ * <p/>
+ * In this demo, we are testing if a remote API (on http://my.remote.domain/api) is
+ * working correctly. We obtain data from it via REST api and communicate to other systems
+ * using a queue as well.
+ * 
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 public class DemoStepDefinitions {
 	private int candy;
 	private static MessageHandler handler = new MessageHandler(); 

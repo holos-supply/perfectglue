@@ -23,7 +23,13 @@ import com.ibm.msg.client.jms.JmsConnectionFactory;
 import com.ibm.msg.client.jms.JmsFactoryFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
 
-
+/**
+ * The <code>QueueConnector</code> is a connector class used to connect to various queues 
+ * to get messages from and post to queues (IBM MQ and RabbitMQ compatible)
+ * 
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ */
 
 public class QueueConnector {
 

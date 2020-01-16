@@ -18,7 +18,6 @@ public class JiraServerController {
 	
 	@PostMapping("/{id}")
 	public void startExecution(@PathVariable String id)  {
-		
 		XrayServerConnector con = new XrayServerConnector(properties.getJira().getServer().getUser(),
 				properties.getJira().getServer().getPass(),
 				properties.getJira().getServer().getUrl());
