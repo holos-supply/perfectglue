@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
- * The <code>QueueProperties</code> is a model class required by <code>QueueProperties</code>
+ * The <code>QueueProp</code> is a model class required by <code>QueueProperties</code>
  *  
  * @author Rok Pu&#154;nik
  * @author Bojan Ivanovi&#263;
