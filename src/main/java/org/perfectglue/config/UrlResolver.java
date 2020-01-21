@@ -13,6 +13,16 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.perfectglue.config.model.URLChild;
 import org.perfectglue.config.model.URLParent;
 
+/**
+ * The <code>UrlResolver</code> is a configuration settings class automatically
+ * initialised and used by Spring Boot. It gets data from endpoints.yml file in 
+ * <code>main/resources</code>
+ * <p/>
+ * 
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
 "parents",

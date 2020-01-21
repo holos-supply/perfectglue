@@ -8,7 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
+/**
+ * The <code>URLParent</code> is a model class required by <code>UrlResolver</code>
+ *  
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
 "simpleName",

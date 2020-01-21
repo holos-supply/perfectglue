@@ -1,5 +1,10 @@
 package org.perfectglue.config.model;
-
+/**
+ * The <code>ServerProperties</code> is a model class required by <code>ConnectionProperties</code>
+ *  
+ * @author Willm T&uuml;ting
+ *
+ */
 public class ServerProperties {
 	
 	private String user;

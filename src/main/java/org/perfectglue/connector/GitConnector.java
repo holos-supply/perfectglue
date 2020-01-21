@@ -10,7 +10,14 @@ import org.kohsuke.github.GHFileNotFoundException;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GHCommit.File;
-
+/**
+ * The <code>GitConnector</code> is a connector class used to connect to Git and to get
+ * data from it
+ *  
+ * @author Rok Pu&#154;nik
+ * @author Bojan Ivanovi&#263;
+ *
+ */
 public class GitConnector {
 	private GitHub github;
 	private static GHRepository repo;
