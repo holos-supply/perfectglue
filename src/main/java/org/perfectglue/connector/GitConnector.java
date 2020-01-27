@@ -9,6 +9,8 @@ import org.kohsuke.github.GHCommit;
 import org.kohsuke.github.GHFileNotFoundException;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
+import org.perfectglue.config.GitProperties;
+import org.perfectglue.util.DataHandler;
 import org.kohsuke.github.GHCommit.File;
 /**
  * The <code>GitConnector</code> is a connector class used to connect to Git and to get
@@ -21,10 +23,12 @@ import org.kohsuke.github.GHCommit.File;
 public class GitConnector {
 	private GitHub github;
 	private static GHRepository repo;
+	private GitProperties properties = DataHandler.initializeGitPreoperties();
+	
 	
 	public GitConnector() {
 		try {
-			github = GitHub.connectUsingOAuth(""); //todo: implement getting token from application.yml
+			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth()); //todo: implement getting token from application.yml
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

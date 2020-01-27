@@ -2,6 +2,7 @@ package org.perfectglue.util;
 
 import java.io.File;
 
+import org.perfectglue.config.GitProperties;
 import org.perfectglue.config.QueueProperties;
 import org.perfectglue.config.UrlResolver;
 
@@ -24,7 +25,7 @@ public class DataHandler { //potentially to be renamed
 	/*
 	 * initializes QueueProperties for QueueConnector to get data from yaml
 	 */
-	public static QueueProperties initializeQueuePrefs() {
+	public static QueueProperties initializeQueueProperties() {
 		QueueProperties properties = new QueueProperties();
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
 		mapper.findAndRegisterModules();
@@ -48,5 +49,17 @@ public class DataHandler { //potentially to be renamed
 			e.printStackTrace();
 		}
 		return resolvers;
+	}
+	
+	public static GitProperties initializeGitPreoperties() {
+		GitProperties gitprops = null;
+		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
+		mapper.findAndRegisterModules();
+		try {
+			gitprops = mapper.readValue(new File("src/main/resources/application.yml"), GitProperties.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return gitprops;
 	}
 }
