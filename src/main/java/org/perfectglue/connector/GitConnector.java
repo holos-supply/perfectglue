@@ -28,13 +28,13 @@ public class GitConnector {
 	
 	public GitConnector() {
 		try {
-			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth()); //todo: implement getting token from application.yml
+			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			repo = github.getRepository(""); //todo: implement getting repo address from application.yml
+			repo = github.getRepository(properties.getGithub().getUrl());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,6 +55,7 @@ public class GitConnector {
 					
 					
 					if (f.getFileName().matches("^(..)/([A-Z][a-z]+)/\\1_\\2_.+_"+commitmessage+".xml")) {
+						//note: change regex if file structure or naming changes!!!
 					try (PrintWriter out = new PrintWriter("src/test/testdata/"+f.getFileName())) {
 					
 						BufferedReader reader = new BufferedReader(
