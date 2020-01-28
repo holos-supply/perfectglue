@@ -41,11 +41,11 @@ public class GitConnector {
 		}
 	}
 	
-	public static String getFileContentsByCommitMessage(String messageName, String commitmessage) throws IOException {
+	public String getFileContentsByCommitMessage(String messageName, String commitmessage) throws IOException {
 		System.out.println(commitmessage);
 		List<GHCommit> list = repo.listCommits().asList();
 		for (GHCommit comment : list) {
-			System.out.println(comment.getCommitShortInfo().getMessage());
+			System.out.println(comment.getCommitShortInfo().getMessage()+"!!!!");
 			if (comment.getCommitShortInfo().getMessage().equals(commitmessage)) {
 				List<File> files = comment.getFiles();
 				for (File f : files) {
@@ -54,21 +54,22 @@ public class GitConnector {
 					//TODO: message name and commit message need to fit for file to be accepted...
 					
 					
-					if (f.getFileName().matches("^(..)/([A-Z][a-z]+)/\\1_\\2_.+_"+commitmessage+".xml")) {
+					//if (f.getFileName().matches("^(..)/([A-Z][a-z]+)/\\1_\\2_.+_"+commitmessage+".xml")) {
 						//note: change regex if file structure or naming changes!!!
-					try (PrintWriter out = new PrintWriter("src/test/testdata/"+f.getFileName())) {
+					//try (PrintWriter out = new PrintWriter("src/test/testdata/"+f.getFileName())) {
 					
 						BufferedReader reader = new BufferedReader(
 								new InputStreamReader(repo.getFileContent(f.getFileName()).read()));
-
+								
 						return org.apache.commons.io.IOUtils.toString(reader);
 						
-					} catch(GHFileNotFoundException e) {
+					/*} catch(GHFileNotFoundException e) {
 							System.out.println("caught: "+e.getMessage());
 					}
 					} else {
 						throw new IOException("wrong file");
-					}
+					}*/
+				
 				}
 			} else {
 				//if commit message isn't what we're looking for...
