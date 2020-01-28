@@ -54,7 +54,7 @@ public class DataHandler { // potentially to be renamed
 		return resolvers;
 	}
 
-	public static GitProperties initializeGitPreoperties() {
+	public static GitProperties initializeGitProperties() {
 		GitProperties gitprops = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
 		mapper.findAndRegisterModules();
@@ -66,13 +66,27 @@ public class DataHandler { // potentially to be renamed
 		return gitprops;
 	}
 
+	public static Projects initializeProjects(String repo, String commitMessage) {
+		Projects projects = null;
+		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
+		GitConnector gitconn = new GitConnector(repo);
+		mapper.findAndRegisterModules();
+		try {
+			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", commitMessage), Projects.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return projects;
+	}
+
+	
 	public static Projects initializeProjects() {
 		Projects projects = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
-		GitConnector gitconn = new GitConnector("holos-supply/yamltest");
+		GitConnector gitconn = new GitConnector(); 
 		mapper.findAndRegisterModules();
 		try {
-			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"),
+			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), 
 					Projects.class);
 		} catch (Exception e) {
 			e.printStackTrace();

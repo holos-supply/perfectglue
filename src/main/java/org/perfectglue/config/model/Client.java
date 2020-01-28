@@ -20,7 +20,7 @@ public class Client {
 @JsonProperty("clientName")
 private String clientName;
 @JsonProperty("project")
-private List<Project> project = null;
+private List<Project> projects = null;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -35,13 +35,13 @@ this.clientName = clientName;
 }
 
 @JsonProperty("project")
-public List<Project> getProject() {
-return project;
+public List<Project> getProjects() {
+return projects;
 }
 
 @JsonProperty("project")
-public void setProject(List<Project> project) {
-this.project = project;
+public void setProjects(List<Project> projects) {
+this.projects = projects;
 }
 
 @JsonAnyGetter

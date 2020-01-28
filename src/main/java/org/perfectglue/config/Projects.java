@@ -20,18 +20,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Projects {
 
 @JsonProperty("client")
-private List<Client> client = null;
+private List<Client> clients = null;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 @JsonProperty("client")
-public List<Client> getClient() {
-return client;
+public List<Client> getClients() {
+return clients;
 }
 
 @JsonProperty("client")
-public void setClient(List<Client> client) {
-this.client = client;
+public void setClients(List<Client> clients) {
+this.clients = clients;
 }
 
 @JsonAnyGetter

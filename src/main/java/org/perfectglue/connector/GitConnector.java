@@ -23,16 +23,11 @@ import org.kohsuke.github.GHCommit.File;
 public class GitConnector {
 	private GitHub github;
 	private static GHRepository repo;
-	private GitProperties properties = DataHandler.initializeGitPreoperties();
+	private GitProperties properties = DataHandler.initializeGitProperties();
 	
 	public GitConnector(String repoName) {
 		try {
 			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			repo = github.getRepository(repoName);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -42,11 +37,6 @@ public class GitConnector {
 	public GitConnector() {
 		try {
 			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			repo = github.getRepository(properties.getGithub().getUrl());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +48,6 @@ public class GitConnector {
 		System.out.println(commitmessage);
 		List<GHCommit> list = repo.listCommits().asList();
 		for (GHCommit comment : list) {
-			System.out.println(comment.getCommitShortInfo().getMessage()+"!!!!");
 			if (comment.getCommitShortInfo().getMessage().equals(commitmessage)) {
 				List<File> files = comment.getFiles();
 				for (File f : files) {
