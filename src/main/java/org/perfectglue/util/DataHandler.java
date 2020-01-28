@@ -1,6 +1,7 @@
 package org.perfectglue.util;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.perfectglue.config.GitProperties;
 import org.perfectglue.config.Projects;
@@ -80,17 +81,13 @@ public class DataHandler { // potentially to be renamed
 	}
 
 	
-	public static Projects initializeProjects() {
+	public static Projects initializeProjects() throws Exception {
 		Projects projects = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
-		GitConnector gitconn = new GitConnector(); 
+		GitConnector gitconn = new GitConnector("holos-supply/yamltest"); 
+		System.out.println(gitconn.getFileContentsByCommitMessage("", "democlientlist"));
 		mapper.findAndRegisterModules();
-		try {
-			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), 
-					Projects.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), Projects.class);
 		return projects;
 	}
 }

@@ -45,7 +45,6 @@ public class GitConnector {
 	}
 	
 	public String getFileContentsByCommitMessage(String messageName, String commitmessage) throws IOException {
-		System.out.println(commitmessage);
 		List<GHCommit> list = repo.listCommits().asList();
 		for (GHCommit comment : list) {
 			if (comment.getCommitShortInfo().getMessage().equals(commitmessage)) {
@@ -75,7 +74,7 @@ public class GitConnector {
 				}
 			} else {
 				//if commit message isn't what we're looking for...
-				System.out.println("something went wobbly, try a different ID?");
+				//System.out.println("something went wobbly, try a different ID?");
 			}
 		}
 		return "";
