@@ -25,7 +25,20 @@ public class GitConnector {
 	private static GHRepository repo;
 	private GitProperties properties = DataHandler.initializeGitPreoperties();
 	
-	
+	public GitConnector(String repoName) {
+		try {
+			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			repo = github.getRepository(repoName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public GitConnector() {
 		try {
 			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth());
