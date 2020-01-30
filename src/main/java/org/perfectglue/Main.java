@@ -1,6 +1,8 @@
 package org.perfectglue;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.perfectglue.config.Projects;
 import org.perfectglue.config.model.Client;
@@ -13,7 +15,9 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		Projects projects = DataHandler.initializeProjects(); //inits to holos-supply/yamltest and searches for democlientlist commit - to get the clientList.yml back, then puts it into pojo and returns it
-		List<Client> clients = projects.getClients(); //supposed to get the List<Client>
+		List<Client> clients = projects.getClient(); //supposed to get the List<Client>
+		if (clients != null) {
+		
 		for (Client c : clients) {
 			for (Project p : c.getProjects()) {
 				for (File f : p.getFiles()) {
@@ -24,6 +28,11 @@ public class Main {
 					}
 				}
 			}
+		}
+		} else {
+		Map<String, Object> map = projects.getAdditionalProperties();
+		System.out.println("\nSize: "+map.size());
+		System.out.println("Projects content: "+map.get("projects"));
 		}
 	}
 }
