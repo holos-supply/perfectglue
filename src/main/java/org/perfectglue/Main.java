@@ -17,7 +17,6 @@ public class Main {
 		Projects projects = DataHandler.initializeProjects(); //inits to holos-supply/yamltest and searches for democlientlist commit - to get the clientList.yml back, then puts it into pojo and returns it
 		List<Client> clients = projects.getClient(); //supposed to get the List<Client>
 		if (clients != null) {
-		
 		for (Client c : clients) {
 			for (Project p : c.getProjects()) {
 				for (File f : p.getFiles()) {
