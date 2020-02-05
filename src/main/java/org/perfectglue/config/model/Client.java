@@ -51,7 +51,9 @@ return this.additionalProperties;
 
 @JsonAnySetter
 public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
+	System.out.println("AdditionalPropertyName: " + name);
+	System.out.println("AdditionalPropertyValue: " + value.toString());
+	this.additionalProperties.put(name, value);
 }
 
 }

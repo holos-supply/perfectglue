@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.IOException;
 
 import org.perfectglue.config.GitProperties;
-import org.perfectglue.config.Projects;
+import org.perfectglue.config.ProjectProperties;
 import org.perfectglue.config.QueueProperties;
 import org.perfectglue.config.UrlResolver;
+import org.perfectglue.config.model.Projects;
 import org.perfectglue.connector.GitConnector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -67,13 +68,13 @@ public class DataHandler { // potentially to be renamed
 		return gitprops;
 	}
 
-	public static Projects initializeProjects(String repo, String commitMessage) {
-		Projects projects = null;
+	public static ProjectProperties initializeProjects(String repo, String commitMessage) {
+		ProjectProperties projects = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
 		GitConnector gitconn = new GitConnector(repo);
 		mapper.findAndRegisterModules();
 		try {
-			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", commitMessage), Projects.class);
+			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", commitMessage), ProjectProperties.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,13 +82,13 @@ public class DataHandler { // potentially to be renamed
 	}
 
 	
-	public static Projects initializeProjects() throws Exception {
-		Projects projects = null;
+	public static ProjectProperties initializeProjects() throws Exception {
+		ProjectProperties projects = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
 		GitConnector gitconn = new GitConnector("holos-supply/yamltest"); 
 		System.out.println(gitconn.getFileContentsByCommitMessage("", "democlientlist"));
 		mapper.findAndRegisterModules();
-		projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), Projects.class);
+		projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), ProjectProperties.class);
 		return projects;
 	}
 }
