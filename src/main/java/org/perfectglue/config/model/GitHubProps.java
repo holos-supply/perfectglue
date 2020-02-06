@@ -11,13 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "url", "oauth" })
+@JsonPropertyOrder({ "url", "oauth", "testDataYMLCommit" })
 public class GitHubProps {
 
 	@JsonProperty("url")
 	private String url;
 	@JsonProperty("oauth")
 	private String oauth;
+	@JsonProperty("testDataYMLCommit")
+	private String testDataYMLCommit;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -40,7 +42,15 @@ public class GitHubProps {
 	public void setOauth(String oauth) {
 		this.oauth = oauth;
 	}
+	@JsonProperty("testDataYMLCommit")
+	public String gettestDataYMLCommit() {
+		return testDataYMLCommit;
+	}
 
+	@JsonProperty("testDataYMLCommit")
+	public void settestDataYMLCommit(String testDataYMLCommit) {
+		this.testDataYMLCommit = testDataYMLCommit;
+	}
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
 		return this.additionalProperties;
