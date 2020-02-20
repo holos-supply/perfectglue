@@ -1,9 +1,5 @@
 package org.perfectglue;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.perfectglue.config.ProjectProperties;
 import org.perfectglue.config.model.Client;
 import org.perfectglue.config.model.File;
