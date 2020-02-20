@@ -44,36 +44,29 @@ public class XrayServerConnector implements IXrayConnector {
 		headerMap.put("Content-Type", "application/json");
 		
 		// get Issue
-		Response response = given().headers(headerMap).log().all().get(jiraXraylUrl+"/rest/raven/1.0/export/test?keys="+id);
+		Response response = given().headers(headerMap).log().all().get(jiraXraylUrl+"/rest/raven/1.0/export/test?keys="+id+ "&fz=true");
 		
 		// write feature files to disk
-				try {
-
-					InputStream fis =  response.body().asInputStream();
-					byte[] buffer = new byte[2048];
-
-
-					ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
+				try (InputStream fis =  response.body().asInputStream();
+					ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis))) {
 					ZipEntry ze;
 
 					Path outDir = Paths.get("src/test/features/");
 
 
 					while ((ze = zis.getNextEntry()) != null) {
-
+						byte[] buffer = new byte[2048];
 						Path filePath = outDir.resolve(ze.getName());
 
-						FileOutputStream fos = new FileOutputStream(filePath.toFile());
-						BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length);
-
-						int len;
+						try(FileOutputStream fos = new FileOutputStream(filePath.toFile());
+						BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length)) {
+						int len = 0;
 						while ((len = zis.read(buffer)) > 0) {
 							bos.write(buffer, 0, len);
 						}
 						bos.flush();
-						bos.close();
 						fos.flush();
-						fos.close();
+					}
 					}
 				}
 				catch(Exception e) {
