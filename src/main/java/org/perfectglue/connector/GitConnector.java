@@ -26,6 +26,7 @@ public class GitConnector {
 	private static GHRepository repo;
 	private GitProperties properties = DataHandler.initializeGitProperties();
 
+	
 	public GitConnector(String repoName) {
 		try {
 			github = GitHub.connectUsingOAuth(properties.getGithub().getOauth());
