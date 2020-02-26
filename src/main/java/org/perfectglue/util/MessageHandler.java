@@ -82,23 +82,40 @@ public class MessageHandler {
 		return doc.getElementsByTagName(element).item(0).getTextContent();
 		
 	}
-		
-	public void validateXml(String file) {
-		Schema schema = null;
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = null;
-		Document document = null;
+	public static void main(String[]s) {
+		MessageHandler mh = new MessageHandler();
+		String xmlfile = "<?xml version=\"1.0\"?>\n" + 
+				"<catalog>\n" + 
+				"   <book id=\"bk101\">\n" + 
+				"      <author>Gambardella, Matthew</author>\n" + 
+				"      <title>XML Developer's Guide</title>\n" + 
+				"      <genre>Computer</genre>\n" + 
+				"      <price>44.95</price>\n" + 
+				"      <publish_date>2000-10-01</publish_date>\n" + 
+				"      <description>An in-depth look at creating applications\n" + 
+				"      with XML.</description>\n" + 
+				"   </wrongbook>\n" + 
+				"</catalog>";
+		System.out.println(mh.validateXml(xmlfile, "C:\\schema.xsl"));
+	}
+	public boolean validateXml(String file, String schemaDirectory) {
 		try {
+			Schema documentschema = null;
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document document = null;
 			document = builder.parse(new InputSource(new StringReader(file)));;
 			String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
 			SchemaFactory factoryS = SchemaFactory.newInstance(language);
-			schema = factoryS.newSchema(new File(file));
-			Validator validator = schema.newValidator();
+			documentschema = factoryS.newSchema(new File(schemaDirectory));
+			Validator validator = documentschema.newValidator();
 			validator.validate(new DOMSource(document));
-
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return false;
 		}
+		System.out.println("it didn't break!");
+		return true;
 	}
 	
 	private static String convertDocumentToString(Document doc) {
