@@ -94,7 +94,7 @@ public class MessageHandler {
 				"      <publish_date>2000-10-01</publish_date>\n" + 
 				"      <description>An in-depth look at creating applications\n" + 
 				"      with XML.</description>\n" + 
-				"   </wrongbook>\n" + 
+				"   </book>\n" + 
 				"</catalog>";
 		System.out.println(mh.validateXml(xmlfile, "C:\\schema.xsl"));
 	}
