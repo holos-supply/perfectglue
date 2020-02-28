@@ -1,17 +1,24 @@
 package org.perfectglue.util;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
+import org.perfectglue.config.CamundaTask;
 import org.perfectglue.config.QueueProperties;
 import org.perfectglue.config.UrlResolver;
+import org.perfectglue.connector.CamundaConnector;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator.Feature;
 
 /**
- * The <code>DataHandler</code> is a utility class resolving YAML files into their respective
- * classes. 
+ * The <code>DataHandler</code> is a utility class resolving YAML files into
+ * their respective classes.
  * <p/>
  * All the methods in this class are static.
  * <p/>
@@ -19,7 +26,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator.Feature;
  * @author Rok Pu&#154;nik
  *
  */
-public class DataHandler { //potentially to be renamed
+public class DataHandler { // potentially to be renamed
 
 	/*
 	 * initializes QueueProperties for QueueConnector to get data from yaml
@@ -31,13 +38,13 @@ public class DataHandler { //potentially to be renamed
 		try {
 			properties = mapper.readValue(new File("src/main/resources/application.yml"), QueueProperties.class);
 		} catch (Exception e) {
-			//a few things can go wrong here, theoretically
-			//including IOException, JsonParseException and JsonMappingException
+			// a few things can go wrong here, theoretically
+			// including IOException, JsonParseException and JsonMappingException
 			e.printStackTrace();
 		}
 		return properties;
 	}
-	
+
 	public static UrlResolver initializeURLResolver() {
 		UrlResolver resolvers = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
@@ -48,5 +55,19 @@ public class DataHandler { //potentially to be renamed
 			e.printStackTrace();
 		}
 		return resolvers;
+	}
+
+	public static List<CamundaTask> initCamundaTaskList(String endpoint) {
+		List<CamundaTask> list = null;
+		ObjectMapper mapper = new ObjectMapper();
+		CamundaConnector cc = new CamundaConnector(endpoint);
+		try {
+			list = mapper.readValue(cc.getEndpointData(), new TypeReference<List<CamundaTask>>(){});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(list.get(0).getBusinessKey());
+		return list;
 	}
 }
