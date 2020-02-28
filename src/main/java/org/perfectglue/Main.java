@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		List<CamundaTask> list = DataHandler.initCamundaTaskList("");
 		for(CamundaTask task : list) {
-			System.out.println("Task: \n" + task.toString());
+			System.out.println("\n\nTask: \n" + task.toString());
 		}
 	}
 }
