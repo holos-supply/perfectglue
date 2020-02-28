@@ -67,7 +67,6 @@ public class DataHandler { // potentially to be renamed
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(list.get(0).getBusinessKey());
 		return list;
 	}
 }
