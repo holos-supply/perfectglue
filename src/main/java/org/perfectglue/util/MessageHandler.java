@@ -17,7 +17,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-
+import org.apache.tomcat.util.json.JSONParserConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -111,7 +111,7 @@ public class MessageHandler {
 			Validator validator = documentschema.newValidator();
 			validator.validate(new DOMSource(document));
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.getMessage();
 			return false;
 		}
 		System.out.println("it didn't break!");
