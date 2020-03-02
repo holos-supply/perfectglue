@@ -82,13 +82,17 @@ public class DataHandler { // potentially to be renamed
 	}
 
 	
-	public static ProjectProperties initializeProjects() throws Exception {
+	public static ProjectProperties initializeProjects() {
 		ProjectProperties projects = null;
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
 		GitConnector gitconn = new GitConnector("holos-supply/yamltest"); 
-		System.out.println(gitconn.getFileContentsByCommitMessage("", "democlientlist"));
+		//System.out.println(gitconn.getFileContentsByCommitMessage("", "democlientlist"));
 		mapper.findAndRegisterModules();
+		try {
 		projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), ProjectProperties.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return projects;
 	}
 }
