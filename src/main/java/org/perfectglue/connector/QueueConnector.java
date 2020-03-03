@@ -39,7 +39,7 @@ public class QueueConnector {
 	
 	
 	// Create variables for the connection to MQ
-	QueueProperties props = DataHandler.initializeQueuePrefs();
+	QueueProperties props = DataHandler.initializeQueueProperties();
 	
 	String QUEUE_NAME;
 	String messageId;
