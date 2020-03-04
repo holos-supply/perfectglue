@@ -3,13 +3,21 @@ package org.perfectglue.util;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
+
+import org.perfectglue.config.CamundaTask;
+import org.perfectglue.config.QueueProperties;
+import org.perfectglue.connector.CamundaConnector;
 import org.perfectglue.config.GitProperties;
 import org.perfectglue.config.ProjectProperties;
-import org.perfectglue.config.QueueProperties;
 import org.perfectglue.config.UrlResolver;
 import org.perfectglue.config.model.Projects;
 import org.perfectglue.connector.GitConnector;
 
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator.Feature;
@@ -55,6 +63,19 @@ public class DataHandler { // potentially to be renamed
 		}
 		return resolvers;
 	}
+
+
+	public static List<CamundaTask> initCamundaTaskList(String endpoint) {
+		List<CamundaTask> list = null;
+		ObjectMapper mapper = new ObjectMapper();
+		CamundaConnector cc = new CamundaConnector(endpoint);
+		try {
+			list = mapper.readValue(cc.getEndpointData(), new TypeReference<List<CamundaTask>>(){});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 
 	public static GitProperties initializeGitProperties() {
 		GitProperties gitprops = null;
