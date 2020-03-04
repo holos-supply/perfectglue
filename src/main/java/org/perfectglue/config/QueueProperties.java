@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  * @author Rok Pu&#154;nik
  * @author Bojan Ivanovi&#263;
- *
+ * @version 1.0.0
  */
 @Component
 @ConfigurationProperties("queue")

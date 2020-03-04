@@ -1,6 +1,7 @@
 package org.perfectglue.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -17,7 +18,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-
+import org.perfectglue.connector.GitConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -42,16 +43,27 @@ import com.google.common.io.Files;
 public class MessageHandler {
 	
 	Logger logger = LoggerFactory.getLogger(MessageHandler.class);
+	public String returnGitTestMessageContents(String fileName, String commitMessage) {
+		String x = "zoinks!";
+		GitConnector gitconn = new GitConnector();
+		try {
+			x = gitconn.getFileContentsByCommitMessage("", commitMessage);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return x;
+			
+	}
+	
 	
 	public String getJsonElement(String jsonMessage, String element) {
-		
-		try {
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode json = objectMapper.readValue(jsonMessage, JsonNode.class);
-
-		return json.get(element).asText();
-		}catch( Exception e) {
-			return null;
+	    try {
+	    	ObjectMapper objectMapper = new ObjectMapper();
+	    	JsonNode json = objectMapper.readValue(jsonMessage, JsonNode.class);
+	    	return json.get(element).asText();
+		} catch( Exception e) {
+			return "!zonk";
 		}
 	}
 	

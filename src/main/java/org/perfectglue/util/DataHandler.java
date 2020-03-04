@@ -2,12 +2,18 @@ package org.perfectglue.util;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.util.List;
 
 import org.perfectglue.config.CamundaTask;
 import org.perfectglue.config.QueueProperties;
-import org.perfectglue.config.UrlResolver;
 import org.perfectglue.connector.CamundaConnector;
+import org.perfectglue.config.GitProperties;
+import org.perfectglue.config.ProjectProperties;
+import org.perfectglue.config.UrlResolver;
+import org.perfectglue.config.model.Projects;
+import org.perfectglue.connector.GitConnector;
+
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -31,7 +37,8 @@ public class DataHandler { // potentially to be renamed
 	/*
 	 * initializes QueueProperties for QueueConnector to get data from yaml
 	 */
-	public static QueueProperties initializeQueuePrefs() {
+
+	public static QueueProperties initializeQueueProperties() {
 		QueueProperties properties = new QueueProperties();
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
 		mapper.findAndRegisterModules();
@@ -57,6 +64,7 @@ public class DataHandler { // potentially to be renamed
 		return resolvers;
 	}
 
+
 	public static List<CamundaTask> initCamundaTaskList(String endpoint) {
 		List<CamundaTask> list = null;
 		ObjectMapper mapper = new ObjectMapper();
@@ -68,5 +76,44 @@ public class DataHandler { // potentially to be renamed
 			e.printStackTrace();
 		}
 		return list;
+
+	public static GitProperties initializeGitProperties() {
+		GitProperties gitprops = null;
+		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
+		mapper.findAndRegisterModules();
+		try {
+			gitprops = mapper.readValue(new File("src/main/resources/application.yml"), GitProperties.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return gitprops;
+	}
+
+	public static ProjectProperties initializeProjects(String repo, String commitMessage) {
+		ProjectProperties projects = null;
+		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
+		GitConnector gitconn = new GitConnector(repo);
+		mapper.findAndRegisterModules();
+		try {
+			projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", commitMessage), ProjectProperties.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return projects;
+	}
+
+	
+	public static ProjectProperties initializeProjects() {
+		ProjectProperties projects = null;
+		ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(Feature.WRITE_DOC_START_MARKER));
+		GitConnector gitconn = new GitConnector("holos-supply/yamltest"); 
+		//System.out.println(gitconn.getFileContentsByCommitMessage("", "democlientlist"));
+		mapper.findAndRegisterModules();
+		try {
+		projects = mapper.readValue(gitconn.getFileContentsByCommitMessage("", "democlientlist"), ProjectProperties.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return projects;
 	}
 }
