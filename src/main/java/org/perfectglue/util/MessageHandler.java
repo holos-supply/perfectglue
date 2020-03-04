@@ -46,15 +46,6 @@ public class MessageHandler {
 
 	Logger logger = LoggerFactory.getLogger(MessageHandler.class);
 
-	public String getJsonElement(String jsonMessage, String element) {
-		try {
-			ObjectMapper objectMapper = new ObjectMapper();
-			JsonNode json = objectMapper.readValue(jsonMessage, JsonNode.class);
-
-			return json.get(element).asText();
-		} catch (Exception e) {
-			return null;
-
 	public String returnGitTestMessageContents(String fileName, String commitMessage) {
 		String x = "zoinks!";
 		GitConnector gitconn = new GitConnector();

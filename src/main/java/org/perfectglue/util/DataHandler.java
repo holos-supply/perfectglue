@@ -76,6 +76,7 @@ public class DataHandler { // potentially to be renamed
 			e.printStackTrace();
 		}
 		return list;
+	}
 
 	public static GitProperties initializeGitProperties() {
 		GitProperties gitprops = null;
