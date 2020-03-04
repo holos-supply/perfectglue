@@ -1,7 +1,6 @@
 package org.perfectglue;
 
 import org.perfectglue.config.ConnectionProperties;
-import org.perfectglue.config.QueueProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
