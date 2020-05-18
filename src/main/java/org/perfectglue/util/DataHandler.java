@@ -1,7 +1,6 @@
 package org.perfectglue.util;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.List;
 
@@ -11,13 +10,11 @@ import org.perfectglue.connector.CamundaConnector;
 import org.perfectglue.config.GitProperties;
 import org.perfectglue.config.ProjectProperties;
 import org.perfectglue.config.UrlResolver;
-import org.perfectglue.config.model.Projects;
+
 import org.perfectglue.connector.GitConnector;
 
-
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator.Feature;
