@@ -1,0 +1,10 @@
+#this file should exist in a github repository (accessed via GitConnector getTestDataYamlConfig() method)
+
+projects:
+- client:
+  - clientName: 'Demo'
+    project:
+    - projectName: 'DemoProject'
+      files:
+      - fileName: 'demo.xml'
+        commitMessage: 'democommit'
