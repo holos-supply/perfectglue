@@ -96,7 +96,7 @@ public class MessageHandler {
 		return doc.getElementsByTagName(element).item(0).getTextContent();
 
 	}
-
+/*
 	public static void main(String[] s) {
 		MessageHandler mh = new MessageHandler();
 		String xmlfile = "<?xml version=\"1.0\"?>\n" + "<catalog>\n" + "   <book id=\"bk101\">\n"
@@ -107,7 +107,7 @@ public class MessageHandler {
 				+ "   </book>\n" + "</catalog>";
 		System.out.println(mh.validateXml(xmlfile, "C:\\schema.xsl"));
 
-	}
+	}*/
 
 	public boolean validateJsonFile(String fileUrl, String schemaUrl) {
 		File schemaFile = new File("/Users/Rok/Desktop/schema.json");
