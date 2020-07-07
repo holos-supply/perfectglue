@@ -51,7 +51,7 @@ public class JiraCloudController {
 	
 	
 	private static String[] defaultOptions = {
-            "--glue", "net.conology.stepdefs",
+            "--glue", "org.perfectglue.stepdefs",
             "--plugin", "pretty",
             "--plugin", "json:target/report/cucumber.json",
             "--monochrome",
